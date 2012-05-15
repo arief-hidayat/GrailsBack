@@ -4,10 +4,10 @@ This is my playground to play around with the following technology:
 * Backbone + Backbone Marionette (Javascript)
 * MongoDB
 
-Basically I just copy paste and modify some code from Addy Osmani and Derick Bailey's code.
+Basically I just copy paste and modify some code from Addy Osmani and Derick Bailey's repo.
 Later I'll put the link to their repo.
 
-# How to setup your Grails project
+# How to run this project
 
 * I used IntelliJ IDEA 11. I think this should be easily imported to other IDE also.
 * Setup your mongoDB ( I refer to this http://docs.mongodb.org/master/tutorial/install-mongodb-on-debian-or-ubuntu-linux/)
