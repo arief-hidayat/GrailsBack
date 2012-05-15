@@ -3,10 +3,10 @@
 // and build with [Backbone.Marionette](http://github.com/derickbailey/backbone.marionette).
 
 // Create a module to hide our private implementation details
-TodoMVC.module("TodoApp", function(App, TodoMVC, Backbone, Marionette, $, _){
+TodoMVC.module("TodoApp", function (App, TodoMVC, Backbone, Marionette, $, _) {
     _.templateSettings = {
-        interpolate : /\{\{(.+?)\}\}/g,
-        evaluate : /\{!(.+?)!\}/g
+        interpolate:/\{\{(.+?)\}\}/g,
+        evaluate:/\{!(.+?)!\}/g
     };
 
     // Views
@@ -15,36 +15,36 @@ TodoMVC.module("TodoApp", function(App, TodoMVC, Backbone, Marionette, $, _){
     // The main form of the app, encapsulating the
     // form input to create a todo, and the "mark all as complete" checkbox
     App.TodoForm = Marionette.ItemView.extend({
-        events: {
-            "keypress #new-todo":  "createOnEnter",
-            "click .mark-all-done": "toggleAllClicked"
+        events:{
+            "keypress #new-todo":"createOnEnter",
+            "click .mark-all-done":"toggleAllClicked"
         },
 
-        triggers: {
-            "click .todo-clear a": "clear:completed"
+        triggers:{
+            "click .todo-clear a":"clear:completed"
         },
 
-        initialize: function(){
+        initialize:function () {
             this.bindTo(this.collection, "update:counts", this.countsUpdated, this);
         },
 
-        countsUpdated: function(counts){
+        countsUpdated:function (counts) {
             var $chk = this.$(".mark-all-done");
             $chk.prop("checked", counts.allDone);
         },
 
-        createOnEnter: function(e) {
+        createOnEnter:function (e) {
             if (e.keyCode != 13) return;
 
             var input = $(e.currentTarget);
             var content = input.val();
             input.val('');
 
-            var data = { text : content };
+            var data = { text:content };
             this.trigger("create:todo", data);
         },
 
-        toggleAllClicked: function(e){
+        toggleAllClicked:function (e) {
             var $chk = $(e.currentTarget);
             var checked = !!$chk.attr("checked");
             this.collection.toggleAll(checked);
@@ -58,17 +58,11 @@ TodoMVC.module("TodoApp", function(App, TodoMVC, Backbone, Marionette, $, _){
     // off the ground and running.
     var todoApp = {
 
-        run: function(){
+        run:function () {
             this.todoList = new TodoMVC.Todos.getAll();
-    //            var form = this.getTodoForm(this.todoList);
-    //            //arief
-    //            //            form.on("create:todo", this.todoList.add, this.todoList);
-    //            form.on("create:todo", this.todoList.create, this.todoList);  // we want to persist it.
-    //            form.on("clear:completed", this.todoList.clearCompleted, this.todoList);
-    //
-    //            TodoMVC.vent.trigger("app:initialized", this.todoList);
             var me = this;
-            $.when(this.todoList.fetch()).done(function(){
+            // fetch all data from backend.
+            $.when(this.todoList.fetch()).done(function () {
                 var form = me.getTodoForm(me.todoList);
                 form.on("create:todo", me.todoList.create, me.todoList);  // we want to persist it.
                 form.on("clear:completed", me.todoList.clearCompleted, me.todoList);
@@ -76,12 +70,11 @@ TodoMVC.module("TodoApp", function(App, TodoMVC, Backbone, Marionette, $, _){
             });
         },
 
-        getTodoForm: function(todos){
-            var layout = new App.TodoForm({
-                el: $("#todoapp"),
-                collection: todos
+        getTodoForm:function (todos) {
+            return new App.TodoForm({
+                el:$("#todoapp"),
+                collection:todos
             });
-            return layout;
         }
 
     };
@@ -90,7 +83,7 @@ TodoMVC.module("TodoApp", function(App, TodoMVC, Backbone, Marionette, $, _){
     // ------------
 
     // Initializers run when the `TodoMVC.start()` method is called
-    TodoMVC.addInitializer(function(){
+    TodoMVC.addInitializer(function () {
         todoApp.run();
     });
 
