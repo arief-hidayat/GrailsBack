@@ -68,6 +68,14 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="Grails-back-grailsPlugins" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

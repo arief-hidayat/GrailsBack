@@ -6,7 +6,9 @@ class BootStrap {
         def vertx = Vertx.newVertx()
         def httpServer = vertx.createHttpServer()
         vertx.createSockJSServer(httpServer).installApp(prefix: grailsApplication.config.vertx.prefix) { sock ->
+            println "on sock"
             sock.dataHandler { buff ->
+                println "on buffer"
                 sock << buff
             }
         }
