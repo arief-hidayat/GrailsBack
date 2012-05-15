@@ -3,12 +3,12 @@
 
 <head>
     <title>Backbone Demo: Todos</title>
-    <r:require module="todo" />
+    <r:require module="socket"/>
+    <r:require module="todo"/>
     <meta name="layout" content="main">
 </head>
 
 <body>
-
 
 <!-- Todo App Interface -->
 
@@ -18,10 +18,15 @@
         <h1>Todos</h1>
     </div>
 
+    <form>
+        <input id="socket-test-msg" type="text" name="message" value="Hello, World!"/>
+        <input id="socket-test" type="button" value="Send SockJS data"/>
+    </form>
+
     <div class="content">
 
         <div id="create-todo">
-            <input id="new-todo" placeholder="What needs to be done?" type="text" />
+            <input id="new-todo" placeholder="What needs to be done?" type="text"/>
             <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
         </div>
 
@@ -40,7 +45,7 @@
 
 <div id="credits">
     Created by
-    <br />
+    <br/>
     <a href="http://mutedsolutions.com">Derick Bailey</a>.
 </div>
 
@@ -52,8 +57,9 @@
             <div class="todo-text">{{ text }}</div>
             <span class="todo-destroy"></span>
         </div>
+
         <div class="edit">
-            <input class="todo-input" type="text" value="{{ text }}" />
+            <input class="todo-input" type="text" value="{{ text }}"/>
         </div>
     </div>
 </script>
@@ -75,28 +81,28 @@
     {! } !}
 </script>
 %{--<script type="text/template" id="stats-template">--}%
-    %{--<span class="todo-count">--}%
-        %{--<span class="number"><%= remaining %></span>--}%
-        %{--<span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.--}%
-    %{--</span>--}%
-    %{--<span class="todo-clear">--}%
-        %{--<a href="#">--}%
-            %{--Clear <span class="number-done"><%= done %></span>--}%
-            %{--completed <span class="word-done"><%= done == 1 ? 'item' : 'items' %></span>--}%
-        %{--</a>--}%
-    %{--</span>--}%
+%{--<span class="todo-count">--}%
+%{--<span class="number"><%= remaining %></span>--}%
+%{--<span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.--}%
+%{--</span>--}%
+%{--<span class="todo-clear">--}%
+%{--<a href="#">--}%
+%{--Clear <span class="number-done"><%= done %></span>--}%
+%{--completed <span class="word-done"><%= done == 1 ? 'item' : 'items' %></span>--}%
+%{--</a>--}%
+%{--</span>--}%
 %{--</script>--}%
 %{--<script type="text/template" id="item-template">--}%
-    %{--<div class="todo <%= done ? 'done' : '' %>">--}%
-        %{--<div class="display">--}%
-            %{--<input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />--}%
-            %{--<label class="todo-text"><%= text %></label>--}%
-            %{--<span class="todo-destroy"></span>--}%
-        %{--</div>--}%
-        %{--<div class="edit">--}%
-            %{--<input class="todo-input" type="text" value="<%= text %>" />--}%
-        %{--</div>--}%
-    %{--</div>--}%
+%{--<div class="todo <%= done ? 'done' : '' %>">--}%
+%{--<div class="display">--}%
+%{--<input class="check" type="checkbox" <%= done ? 'checked="checked"' : '' %> />--}%
+%{--<label class="todo-text"><%= text %></label>--}%
+%{--<span class="todo-destroy"></span>--}%
+%{--</div>--}%
+%{--<div class="edit">--}%
+%{--<input class="todo-input" type="text" value="<%= text %>" />--}%
+%{--</div>--}%
+%{--</div>--}%
 %{--</script>--}%
 
 </body>

@@ -11,6 +11,6 @@ var TodoMVC = new Backbone.Marionette.Application();
 // The `todo-list` region is the <ul> list of todo items.
 // The `todo-stats` region is the stats display below the list
 TodoMVC.addRegions({
-  list: "#todo-list",
-  stats: "#todo-stats"
+    list:"#todo-list",
+    stats:"#todo-stats"
 });
